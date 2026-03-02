@@ -1,0 +1,153 @@
+1)def square(x):
+    result = x * x
+    # return result
+print(square(5))
+
+it will print none because no return statement included
+
+-----------------------------------------------------------------------------
+
+2)def countdown(n):
+    while n > 0:
+        print(n)
+    print("Blastoff!")
+countdown(3)
+
+it will print 3 3 3 3.........forever, because inside while loop n>0 and we are not decrementing, in while loop we have to manually increment or decrement.
+
+fix:
+def countdown(n):
+    while n > 0:
+        print(n)
+        n -= 1
+    print("Blastoff!")
+--------------------------------------------------------------------------------
+
+3)def first_n(items, n):
+    result = []
+    for i in range(1, n):
+        result.append(items[i])
+    return result
+
+Two problems:
+
+It starts from index 1 (skips first element)
+
+It excludes index n because range stops before n
+
+test:
+def test_first_n():
+    assert first_n([10, 20, 30, 40], 2) == [10, 20]   -> this gives [20] meaning test fails
+fix:
+def first_n(items, n):
+    result = []
+    for i in range(n):
+        result.append(items[i])
+    return result
+
+--------------------------------------------------------------------------------------------
+
+
+4) def total_with_tax(price, tax_rate):
+    tax = price * tax_rate
+    total = price + tax
+    price + tax
+print ( total_with_tax (100 , 0.15) )
+
+
+first issue is that no return statement
+second isse is price + tax is doing nothing
+fix:
+def total_with_tax(price, tax_rate):
+    tax = price * tax_rate
+    total = price + tax
+    return total
+
+--------------------------------------------------------------------------------------------------------
+5)
+def reverse_list(items):
+    for i in range(len(items)):
+        j = len(items) - 1 - i
+        items[i], items[j] = items[j], items[i]
+    return items
+
+
+this code swaps entire list twice, so final results become original again
+
+test:
+def test_reverse_list():
+    assert reverse_list([1, 2, 3]) == [3, 2, 1]
+    assert reverse_list([10, 20]) == [20, 10] 
+test fails
+
+fix:
+def reverse_list(items):
+    for i in range(len(items) // 2):
+        j = len(items) - 1 - i
+        items[i], items[j] = items[j], items[i]
+    return items
+
+
+--------------------------------------------------------
+
+6)
+# Step 1: Reproduce
+# Running reverse_list([1,2,3]) gives wrong output
+
+# Step 2: Isolate
+# Using debugger, saw swaps happening twice
+
+# Step 3: Hypothesize
+# Loop runs too many times
+
+# Step 4: Test
+# Changed range to len(items)//2
+
+# Step 5: Verify
+# All test cases now pass
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
